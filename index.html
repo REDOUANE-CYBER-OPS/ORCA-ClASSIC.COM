@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KIFAHI - Official Store</title>
+    <title>ORCA CLASSIC - Official Store</title>
     <style>
         * {
             box-sizing: border-box;
@@ -42,11 +42,20 @@
             margin: 0 auto;
         }
         .logo {
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: 3px;
+            font-size: 20px;
+            font-weight: 950;
+            letter-spacing: 2px;
             color: #000;
             text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+        .logo span {
+            font-size: 10px;
+            letter-spacing: 4px;
+            color: #555;
+            font-weight: 700;
         }
         .nav-links {
             display: flex;
@@ -56,13 +65,19 @@
             font-weight: 700;
             text-transform: uppercase;
         }
-        .nav-links a {
-            text-decoration: none;
+        .nav-links button {
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
             color: #000;
             transition: color 0.2s;
         }
-        .nav-links a:hover {
+        .nav-links button:hover, .nav-links button.active {
             color: #666;
+            border-bottom: 2px solid #000;
         }
         .nav-icons {
             display: flex;
@@ -76,7 +91,7 @@
 
         /* Promo Banner */
         .promo-hero {
-            background: linear-gradient(135deg, #f35555, #9b51e0, #4facfe);
+            background: linear-gradient(135deg, #111111, #333333);
             color: white;
             text-align: center;
             padding: 60px 20px;
@@ -86,7 +101,7 @@
             font-weight: 900;
             text-transform: uppercase;
             margin-bottom: 15px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
         .promo-hero p {
             font-size: 18px;
@@ -96,22 +111,23 @@
         }
         .btn-shop {
             display: inline-block;
-            background: #000;
-            color: #fff;
+            background: #fff;
+            color: #000;
             padding: 12px 30px;
             text-decoration: none;
             font-weight: 700;
             font-size: 14px;
             text-transform: uppercase;
-            border: 2px solid #000;
+            border: 2px solid #fff;
+            cursor: pointer;
             transition: all 0.3s;
         }
         .btn-shop:hover {
-            background: #fff;
-            color: #000;
+            background: transparent;
+            color: #fff;
         }
 
-        /* Category Grid */
+        /* Categories Section */
         .categories-section {
             padding: 50px 25px;
             max-width: 1440px;
@@ -138,6 +154,10 @@
             padding: 30px;
             color: white;
             text-decoration: none;
+            cursor: pointer;
+            border: none;
+            background: none;
+            text-align: left;
         }
         .cat-card img {
             position: absolute;
@@ -159,7 +179,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.3);
             z-index: 2;
         }
         .cat-content {
@@ -289,6 +309,7 @@
             font-size: 13px;
             color: #aaa;
             cursor: pointer;
+            transition: color 0.2s;
         }
         .footer-col ul li:hover {
             color: #fff;
@@ -314,135 +335,62 @@
 
     <!-- Announcement Bar -->
     <div class="announcement-bar">
-        Profitez de la livraison gratuite dès 50$ d'achat | KIFAHI OFFICIEL
+        Livraison gratuite disponible sur toute la collection | ORCA CLASSIC
     </div>
 
     <!-- Header -->
     <header>
         <div class="nav-container">
-            <a href="#" class="logo">KIFAHI</a>
+            <a href="#" class="logo" onclick="filterProducts('all')">
+                ORCA CLASSIC
+                <span>OFFICIAL</span>
+            </a>
             <ul class="nav-links">
-                <li><a href="#">HOMMES</a></li>
-                <li><a href="#">FEMMES</a></li>
-                <li><a href="#">ENFANTS</a></li>
-                <li><a href="#">STREETWEAR</a></li>
-                <li><a href="#">SOLDES</a></li>
+                <li><button onclick="filterProducts('homme')">HOMMES</button></li>
+                <li><button onclick="filterProducts('femme')">FEMMES</button></li>
+                <li><button onclick="filterProducts('accessoire')">ACCESSOIRES</button></li>
+                <li><button onclick="filterProducts('streetwear')">STREETWEAR</button></li>
+                <li><button onclick="filterProducts('all')">TOUT VOIR</button></li>
             </ul>
             <div class="nav-icons">
-                <span>🔍</span>
-                <span>👤</span>
-                <span>🛒 0</span>
+                <span onclick="alert('Recherche rapide activée')">🔍</span>
+                <span onclick="alert('Espace Client Orca Classic')">👤</span>
+                <span onclick="alert('Votre panier est actif')">🛒 <span id="cart-count">0</span></span>
             </div>
         </div>
     </header>
 
     <!-- Hero Promo -->
     <div class="promo-hero">
-        <h1>Rentrée Scolaire KIFAHI</h1>
-        <p>Achetez 2 obtenez 20% | Achetez 3 obtenez 30% sur une sélection d'articles</p>
-        <a href="#" class="btn-shop">Acheter Maintenant</a>
+        <h1>ORCA CLASSIC EXCLUSIVE</h1>
+        <p>Découvrez la nouvelle collection de saison | Style et Élégance</p>
+        <button class="btn-shop" onclick="filterProducts('all')">Découvrir</button>
     </div>
 
     <!-- Categories Section -->
     <div class="categories-section">
-        <h2 class="section-heading">Pour qui fais-tu tes achats ?</h2>
+        <h2 class="section-heading">Explorer les collections</h2>
         <div class="cat-grid">
-            <a href="#" class="cat-card">
+            <button class="cat-card" onclick="filterProducts('homme')">
                 <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?w=600" alt="Hommes">
                 <div class="cat-content">Hommes <span>→</span></div>
-            </a>
-            <a href="#" class="cat-card">
+            </button>
+            <button class="cat-card" onclick="filterProducts('femme')">
                 <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600" alt="Femmes">
                 <div class="cat-content">Femmes <span>→</span></div>
-            </a>
-            <a href="#" class="cat-card">
-                <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600" alt="Enfants">
-                <div class="cat-content">Enfants <span>→</span></div>
-            </a>
+            </button>
+            <button class="cat-card" onclick="filterProducts('accessoire')">
+                <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600" alt="Accessoires">
+                <div class="cat-content">Accessoires <span>→</span></div>
+            </button>
         </div>
     </div>
 
     <!-- Products Section -->
     <div class="products-section">
-        <h2 class="section-heading">Nouveautés & Essentiels KIFAHI</h2>
-        <div class="product-grid">
-
-            <!-- Product 1: T-Shirt ($20.00) -->
-            <div class="product-card">
-                <button class="wishlist-icon">♡</button>
-                <div class="product-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" alt="T-Shirt KIFAHI">
-                    <div class="product-badge">Nouveau</div>
-                </div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-category-sub">Unisex Streetwear</div>
-                        <div class="product-title">T-SHIRT OVERSIZED KIFAHI STREET</div>
-                    </div>
-                    <div>
-                        <div class="product-price">$20.00</div>
-                        <div class="product-colors">3 Couleurs</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product 2: Chaussure ($50.00) -->
-            <div class="product-card">
-                <button class="wishlist-icon">♡</button>
-                <div class="product-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" alt="Chaussure KIFAHI">
-                    <div class="product-badge">Selling Fast</div>
-                </div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-category-sub">Hommes Running</div>
-                        <div class="product-title">CHAUSSURE RUNNING KIFAHI RUNNER 6</div>
-                    </div>
-                    <div>
-                        <div class="product-price">$50.00</div>
-                        <div class="product-colors">5 Couleurs</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product 3: Sac ($79.00) -->
-            <div class="product-card">
-                <button class="wishlist-icon">♡</button>
-                <div class="product-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500" alt="Sac KIFAHI">
-                    <div class="product-badge">La Rentrée Scolaire</div>
-                </div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-category-sub">Accessoires / Bagagerie</div>
-                        <div class="product-title">SAC À DOS URBAIN KIFAHI ELITE</div>
-                    </div>
-                    <div>
-                        <div class="product-price">$79.00</div>
-                        <div class="product-colors">2 Couleurs</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product 4: Chaussure ($50.00) -->
-            <div class="product-card">
-                <button class="wishlist-icon">♡</button>
-                <div class="product-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500" alt="Chaussure KIFAHI">
-                    <div class="product-badge">-35% Soldes</div>
-                </div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-category-sub">Femmes Sportswear</div>
-                        <div class="product-title">CHAUSSURE GALAXY KIFAHI 8 W</div>
-                    </div>
-                    <div>
-                        <div class="product-price">$50.00</div>
-                        <div class="product-colors">4 Couleurs</div>
-                    </div>
-                </div>
-            </div>
-
+        <h2 class="section-heading" id="section-title">Nouveautés Orca Classic</h2>
+        <div class="product-grid" id="product-grid">
+            <!-- المنتجات ستُعرض هنا ديناميكياً عبر JavaScript -->
         </div>
     </div>
 
@@ -452,51 +400,184 @@
             <div class="footer-col">
                 <h4>Produits</h4>
                 <ul>
-                    <li>Chaussures Running</li>
-                    <li>T-Shirts & Vêtements</li>
-                    <li>Sacs & Accessoires</li>
-                    <li>Nouveautés</li>
+                    <li onclick="filterProducts('chaussure')">Chaussures</li>
+                    <li onclick="filterProducts('streetwear')">T-Shirts & Vêtements</li>
+                    <li onclick="filterProducts('accessoire')">Sacs & Accessoires</li>
+                    <li onclick="filterProducts('all')">Nouveautés</li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Sports</h4>
+                <h4>Collections</h4>
                 <ul>
-                    <li>Running</li>
-                    <li>Training</li>
-                    <li>Football</li>
-                    <li>Basketball</li>
+                    <li onclick="filterProducts('homme')">Running Homme</li>
+                    <li onclick="filterProducts('femme')">Casual Femme</li>
+                    <li onclick="filterProducts('streetwear')">Streetwear</li>
+                    <li onclick="filterProducts('all')">Sport</li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Catégorie</h4>
+                <h4>Support</h4>
                 <ul>
-                    <li>Hommes Originals</li>
-                    <li>Femmes Sportswear</li>
-                    <li>Enfants & Bébés</li>
+                    <li onclick="alert('Aide & Commandes en ligne')">Aide & Commandes</li>
+                    <li onclick="alert('Politique de retours sous 30 jours')">Retours</li>
+                    <li onclick="alert('Livraison express disponible')">Livraison</li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Information KIFAHI</h4>
+                <h4>Orca Classic</h4>
                 <ul>
-                    <li>À propos de la marque</li>
-                    <li>Carrières</li>
-                    <li>Presse KIFAHI</li>
+                    <li onclick="alert('À propos de la marque Orca Classic')">À propos de la marque</li>
+                    <li onclick="alert('Pas de postes vacants pour le moment')">Carrières</li>
+                    <li onclick="alert('Boutiques officielles')">Boutiques</li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Assistance</h4>
+                <h4>Contact</h4>
                 <ul>
-                    <li>Suivi de commande</li>
-                    <li>Retours & Remboursements</li>
-                    <li>Contactez-nous</li>
+                    <li onclick="alert('Contact: support@orcaclassic.com')">Service Client</li>
+                    <li onclick="alert('Espace Collaborations ouvert')">Collaborations</li>
+                    <li onclick="alert('Foire aux questions')">FAQ</li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 KIFAHI Brand Inc. Tous droits réservés.</p>
-            <p>Morocco | USD ($)</p>
+            <p>© 2026 ORCA CLASSIC. Tous droits réservés.</p>
+            <p>USD ($)</p>
         </div>
     </footer>
 
+    <script>
+        // قاعدة بيانات المنتجات مع الأسعار المحددة والتصنيفات
+        const products = [
+            {
+                id: 1,
+                title: "T-SHIRT ORCA CLASSIC SIGNATURE",
+                category: "streetwear",
+                sub: "Textile / Streetwear",
+                price: 20.00,
+                badge: "Nouveau",
+                colors: "3 Couleurs",
+                image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500"
+            },
+            {
+                id: 2,
+                title: "CHAUSSURE RUNFASTER ORCA RUNNER",
+                category: "homme",
+                sub: "Chaussures Sport / Homme",
+                price: 50.00,
+                badge: "Populaire",
+                colors: "4 Couleurs",
+                image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"
+            },
+            {
+                id: 3,
+                title: "SAC À DOS PREMIUM ORCA CLASSIC",
+                category: "accessoire",
+                sub: "Bagagerie / Accessoires",
+                price: 79.00,
+                badge: "Édition Limitée",
+                colors: "2 Couleurs",
+                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500"
+            },
+            {
+                id: 4,
+                title: "CHAUSSURE GALAXY ORCA 8",
+                category: "femme",
+                sub: "Chaussures Casual / Femme",
+                price: 50.00,
+                badge: "Nouveau",
+                colors: "3 Couleurs",
+                image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500"
+            },
+            {
+                id: 5,
+                title: "HOODIE URBAN ORCA CLASSIC",
+                category: "streetwear",
+                sub: "Textile / Streetwear",
+                price: 79.00,
+                badge: "Tendance",
+                colors: "2 Couleurs",
+                image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500"
+            },
+            {
+                id: 6,
+                title: "CASQUETTE SPORT ORCA",
+                category: "accessoire",
+                sub: "Accessoires",
+                price: 20.00,
+                badge: "Populaire",
+                colors: "3 Couleurs",
+                image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=500"
+            }
+        ];
+
+        let cartCount = 0;
+
+        function renderProducts(items) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+            
+            if(items.length === 0) {
+                grid.innerHTML = '<p style="grid-column: span 4; text-align:center; padding: 40px; font-weight:bold;">Aucun produit trouvé dans cette catégorie.</p>';
+                return;
+            }
+
+            items.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <button class="wishlist-icon" onclick="event.stopPropagation(); alert('Ajouté aux favoris ❤️');">♡</button>
+                    <div class="product-img-wrap">
+                        <img src="${p.image}" alt="${p.title}">
+                        <div class="product-badge">${p.badge}</div>
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <div class="product-category-sub">${p.sub}</div>
+                            <div class="product-title">${p.title}</div>
+                        </div>
+                        <div>
+                            <div class="product-price">$${p.price.toFixed(2)}</div>
+                            <div class="product-colors">${p.colors}</div>
+                        </div>
+                    </div>
+                `;
+                card.onclick = () => {
+                    cartCount++;
+                    document.getElementById('cart-count').innerText = cartCount;
+                    alert(`Vous avez sélectionné : ${p.title} ($${p.price.toFixed(2)}) - Ajouté au panier !`);
+                };
+                grid.appendChild(card);
+            });
+        }
+
+        function filterProducts(category) {
+            const titleEl = document.getElementById('section-title');
+            if(category === 'all') {
+                titleEl.innerText = "Tous les produits Orca Classic";
+                renderProducts(products);
+            } else if(category === 'homme') {
+                titleEl.innerText = "Collection Hommes";
+                renderProducts(products.filter(p => p.category === 'homme' || p.category === 'streetwear'));
+            } else if(category === 'femme') {
+                titleEl.innerText = "Collection Femmes";
+                renderProducts(products.filter(p => p.category === 'femme' || p.category === 'accessoire'));
+            } else if(category === 'accessoire') {
+                titleEl.innerText = "Accessoires & Bagagerie";
+                renderProducts(products.filter(p => p.category === 'accessoire'));
+            } else if(category === 'streetwear') {
+                titleEl.innerText = "Collection Streetwear & Textile";
+                renderProducts(products.filter(p => p.category === 'streetwear'));
+            } else if(category === 'chaussure') {
+                titleEl.innerText = "Chaussures Sport & Casual";
+                renderProducts(products.filter(p => p.category === 'homme' || p.category === 'femme'));
+            }
+        }
+
+        // تحميل كل المنتجات عند فتح الصفحة لأول مرة
+        window.onload = () => {
+            renderProducts(products);
+        };
+    </script>
 </body>
 </html>
