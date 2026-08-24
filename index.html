@@ -1,181 +1,501 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر رياضي - عرض العودة للمدارس</title>
+    <title>KIFAHI - Official Store</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: Helvetica, Arial, sans-serif;
         }
         body {
-            background-color: #f4f4f4;
-            color: #111;
+            background-color: #ffffff;
+            color: #000000;
         }
+        /* Announcement Bar */
+        .announcement-bar {
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            font-size: 11px;
+            letter-spacing: 1px;
+            padding: 8px 10px;
+            text-transform: uppercase;
+        }
+        /* Header / Nav */
         header {
-            background-color: #000;
-            color: #fff;
-            padding: 15px 20px;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            background: #ffffff;
+            z-index: 1000;
+        }
+        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 15px 25px;
+            max-width: 1440px;
+            margin: 0 auto;
         }
         .logo {
-            font-weight: bold;
-            font-size: 20px;
-            letter-spacing: 2px;
-        }
-        .hero-banner {
-            background: linear-gradient(135deg, #f35555, #9b51e0);
-            color: #fff;
-            text-align: center;
-            padding: 40px 20px;
-        }
-        .hero-banner h1 {
             font-size: 24px;
-            margin-bottom: 10px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #000;
+            text-decoration: none;
         }
-        .hero-banner p {
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #666;
+        }
+        .nav-icons {
+            display: flex;
+            gap: 20px;
             font-size: 18px;
-            font-weight: bold;
+            align-items: center;
         }
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 15px;
+        .nav-icons span {
+            cursor: pointer;
         }
-        .section-title {
-            margin: 20px 0 15px;
+
+        /* Promo Banner */
+        .promo-hero {
+            background: linear-gradient(135deg, #f35555, #9b51e0, #4facfe);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .promo-hero h1 {
+            font-size: 32px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        .promo-hero p {
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
         }
-        .grid {
+        .btn-shop {
+            display: inline-block;
+            background: #000;
+            color: #fff;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            border: 2px solid #000;
+            transition: all 0.3s;
+        }
+        .btn-shop:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Category Grid */
+        .categories-section {
+            padding: 50px 25px;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+        .section-heading {
+            font-size: 24px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+        .cat-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
-        .card {
-            background: #fff;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        .cat-card {
             position: relative;
+            height: 400px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+            color: white;
+            text-decoration: none;
+        }
+        .cat-card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            transition: transform 0.5s;
+        }
+        .cat-card:hover img {
+            transform: scale(1.05);
+        }
+        .cat-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+        .cat-content {
+            position: relative;
+            z-index: 3;
+            background: #fff;
+            color: #000;
+            padding: 12px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 200px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 30px 25px 60px;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px 20px;
+        }
+        .product-card {
+            position: relative;
+            background: #f7f7f7;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .product-img-wrap {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            background: #f0f0f0;
+            overflow: hidden;
+        }
+        .product-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .wishlist-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 5;
+        }
+        .product-badge {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: #000;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 6px 12px;
+        }
+        .product-info {
+            padding: 15px;
+            background: #ffffff;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
-        .card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            background-color: #eaeaea;
-        }
-        .card-content {
-            padding: 15px;
-        }
-        .card-title {
+        .product-title {
             font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #333;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            color: #111;
         }
-        .card-category {
+        .product-price {
+            font-size: 15px;
+            font-weight: 900;
+            color: #000;
+            margin-bottom: 5px;
+        }
+        .product-category-sub {
             font-size: 12px;
             color: #666;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
-        .card-price {
-            font-size: 16px;
-            font-weight: bold;
-            color: #000;
+        .product-colors {
+            font-size: 12px;
+            color: #777;
         }
-        .badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #000;
-            color: #fff;
-            font-size: 10px;
-            padding: 4px 8px;
-            text-transform: uppercase;
-        }
+
+        /* Footer */
         footer {
-            background: #000;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            background: #000000;
+            color: #ffffff;
+            padding: 60px 25px 30px;
+        }
+        .footer-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 40px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 40px;
+        }
+        .footer-col h4 {
             font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #aaa;
+            cursor: pointer;
+        }
+        .footer-col ul li:hover {
+            color: #fff;
+        }
+        .footer-bottom {
+            max-width: 1440px;
+            margin: 30px auto 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #888;
+        }
+
+        @media(max-width: 1024px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+            .cat-grid { grid-template-columns: 1fr; }
+            .footer-container { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">SPORTS STORE</div>
-        <div>🛒 السلة (0)</div>
-    </header>
-
-    <div class="hero-banner">
-        <h1>العودة للمدارس</h1>
-        <p>اشتري قطعتين واحصل على خصم 20% | اشتري 3 واحصل على خصم 30%</p>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        Profitez de la livraison gratuite dès 50$ d'achat | KIFAHI OFFICIEL
     </div>
 
-    <div class="container">
-        <div class="section-title">أبرز المنتجات والعروض</div>
-        
-        <div class="grid">
-            <!-- منتج 1: تيشيرت -->
-            <div class="card">
-                <span class="badge">جديد</span>
-                <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" alt="تيشيرت أنيق">
-                <div class="card-content">
-                    <div class="card-category">ملابس رجالية / نسائية</div>
-                    <div class="card-title">تيشيرت سهرة عصري</div>
-                    <div class="card-price">$20.00</div>
-                </div>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">KIFAHI</a>
+            <ul class="nav-links">
+                <li><a href="#">HOMMES</a></li>
+                <li><a href="#">FEMMES</a></li>
+                <li><a href="#">ENFANTS</a></li>
+                <li><a href="#">STREETWEAR</a></li>
+                <li><a href="#">SOLDES</a></li>
+            </ul>
+            <div class="nav-icons">
+                <span>🔍</span>
+                <span>👤</span>
+                <span>🛒 0</span>
             </div>
+        </div>
+    </header>
 
-            <!-- منتج 2: حذاء -->
-            <div class="card">
-                <span class="badge">الأكثر مبيعاً</span>
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" alt="حذاء رياضي">
-                <div class="card-content">
-                    <div class="card-category">أحذية رياضية للجري</div>
-                    <div class="card-title">CHAUSSURE RUNFALCON SPORT</div>
-                    <div class="card-price">$50.00</div>
-                </div>
-            </div>
+    <!-- Hero Promo -->
+    <div class="promo-hero">
+        <h1>Rentrée Scolaire KIFAHI</h1>
+        <p>Achetez 2 obtenez 20% | Achetez 3 obtenez 30% sur une sélection d'articles</p>
+        <a href="#" class="btn-shop">Acheter Maintenant</a>
+    </div>
 
-            <!-- منتج 3: حقيبة -->
-            <div class="card">
-                <span class="badge">عروض المدرسة</span>
-                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500" alt="حقيبة ظهر">
-                <div class="card-content">
-                    <div class="card-category">إكسسوارات وحقائب</div>
-                    <div class="card-title">حقيبة ظهر احترافية للعمل والدراسة</div>
-                    <div class="card-price">$79.00</div>
-                </div>
-            </div>
-
-            <!-- منتج 4: حذاء إضافي -->
-            <div class="card">
-                <span class="badge">تخفيضات</span>
-                <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500" alt="حذاء عصرية">
-                <div class="card-content">
-                    <div class="card-category">أحذية أطفال وشباب</div>
-                    <div class="card-title">CHAUSSURE GALAXY 8 EL C</div>
-                    <div class="card-price">$50.00</div>
-                </div>
-            </div>
+    <!-- Categories Section -->
+    <div class="categories-section">
+        <h2 class="section-heading">Pour qui fais-tu tes achats ?</h2>
+        <div class="cat-grid">
+            <a href="#" class="cat-card">
+                <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?w=600" alt="Hommes">
+                <div class="cat-content">Hommes <span>→</span></div>
+            </a>
+            <a href="#" class="cat-card">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600" alt="Femmes">
+                <div class="cat-content">Femmes <span>→</span></div>
+            </a>
+            <a href="#" class="cat-card">
+                <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600" alt="Enfants">
+                <div class="cat-content">Enfants <span>→</span></div>
+            </a>
         </div>
     </div>
 
+    <!-- Products Section -->
+    <div class="products-section">
+        <h2 class="section-heading">Nouveautés & Essentiels KIFAHI</h2>
+        <div class="product-grid">
+
+            <!-- Product 1: T-Shirt ($20.00) -->
+            <div class="product-card">
+                <button class="wishlist-icon">♡</button>
+                <div class="product-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" alt="T-Shirt KIFAHI">
+                    <div class="product-badge">Nouveau</div>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-category-sub">Unisex Streetwear</div>
+                        <div class="product-title">T-SHIRT OVERSIZED KIFAHI STREET</div>
+                    </div>
+                    <div>
+                        <div class="product-price">$20.00</div>
+                        <div class="product-colors">3 Couleurs</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2: Chaussure ($50.00) -->
+            <div class="product-card">
+                <button class="wishlist-icon">♡</button>
+                <div class="product-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" alt="Chaussure KIFAHI">
+                    <div class="product-badge">Selling Fast</div>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-category-sub">Hommes Running</div>
+                        <div class="product-title">CHAUSSURE RUNNING KIFAHI RUNNER 6</div>
+                    </div>
+                    <div>
+                        <div class="product-price">$50.00</div>
+                        <div class="product-colors">5 Couleurs</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3: Sac ($79.00) -->
+            <div class="product-card">
+                <button class="wishlist-icon">♡</button>
+                <div class="product-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500" alt="Sac KIFAHI">
+                    <div class="product-badge">La Rentrée Scolaire</div>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-category-sub">Accessoires / Bagagerie</div>
+                        <div class="product-title">SAC À DOS URBAIN KIFAHI ELITE</div>
+                    </div>
+                    <div>
+                        <div class="product-price">$79.00</div>
+                        <div class="product-colors">2 Couleurs</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4: Chaussure ($50.00) -->
+            <div class="product-card">
+                <button class="wishlist-icon">♡</button>
+                <div class="product-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500" alt="Chaussure KIFAHI">
+                    <div class="product-badge">-35% Soldes</div>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-category-sub">Femmes Sportswear</div>
+                        <div class="product-title">CHAUSSURE GALAXY KIFAHI 8 W</div>
+                    </div>
+                    <div>
+                        <div class="product-price">$50.00</div>
+                        <div class="product-colors">4 Couleurs</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
     <footer>
-        <p>جميع الحقوق محفوظة © 2026</p>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Produits</h4>
+                <ul>
+                    <li>Chaussures Running</li>
+                    <li>T-Shirts & Vêtements</li>
+                    <li>Sacs & Accessoires</li>
+                    <li>Nouveautés</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Sports</h4>
+                <ul>
+                    <li>Running</li>
+                    <li>Training</li>
+                    <li>Football</li>
+                    <li>Basketball</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Catégorie</h4>
+                <ul>
+                    <li>Hommes Originals</li>
+                    <li>Femmes Sportswear</li>
+                    <li>Enfants & Bébés</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Information KIFAHI</h4>
+                <ul>
+                    <li>À propos de la marque</li>
+                    <li>Carrières</li>
+                    <li>Presse KIFAHI</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Assistance</h4>
+                <ul>
+                    <li>Suivi de commande</li>
+                    <li>Retours & Remboursements</li>
+                    <li>Contactez-nous</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 KIFAHI Brand Inc. Tous droits réservés.</p>
+            <p>Morocco | USD ($)</p>
+        </div>
     </footer>
 
 </body>
