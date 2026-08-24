@@ -3,70 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجري الإلكتروني - ORCA-CLASSIC</title>
+    <title>متجر رياضي - عرض العودة للمدارس</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f4f7f6; color: #333; }
-        header { background-color: #2c3e50; color: white; padding: 25px; text-align: center; }
-        .container { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
-        h2 { margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .gallery-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s; }
-        .gallery-card:hover { transform: translateY(-5px); }
-        .img-container { width: 100%; height: 220px; background-color: #eee; overflow: hidden; }
-        .img-container img { width: 100%; height: 100%; object-fit: cover; }
-        .card-info { padding: 15px; }
-        .card-info h3 { font-size: 18px; margin-bottom: 10px; color: #2c3e50; }
-        .card-info p { font-size: 14px; color: #666; margin-bottom: 15px; }
-        .card-footer { display: flex; justify-content: space-between; align-items: center; }
-        .price { font-size: 18px; font-weight: bold; color: #e74c3c; }
-        .btn { background-color: #3498db; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-size: 14px; transition: background 0.2s; }
-        .btn:hover { background-color: #2980b9; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f4f4f4;
+            color: #111;
+        }
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: bold;
+            font-size: 20px;
+            letter-spacing: 2px;
+        }
+        .hero-banner {
+            background: linear-gradient(135deg, #f35555, #9b51e0);
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .hero-banner h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .hero-banner p {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        .section-title {
+            margin: 20px 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background-color: #eaeaea;
+        }
+        .card-content {
+            padding: 15px;
+        }
+        .card-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .card-category {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        .card-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+        }
+        .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #000;
+            color: #fff;
+            font-size: 10px;
+            padding: 4px 8px;
+            text-transform: uppercase;
+        }
+        footer {
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>مرحباً بكم في متجرنا</h1>
-        <p>ORCA-CLASSIC.COM</p>
+        <div class="logo">SPORTS STORE</div>
+        <div>🛒 السلة (0)</div>
     </header>
 
+    <div class="hero-banner">
+        <h1>العودة للمدارس</h1>
+        <p>اشتري قطعتين واحصل على خصم 20% | اشتري 3 واحصل على خصم 30%</p>
+    </div>
+
     <div class="container">
-        <h2>منتجاتنا</h2>
+        <div class="section-title">أبرز المنتجات والعروض</div>
         
-        <div class="gallery-grid" id="gallery">
-            <!-- المنتج الأول -->
-            <div class="gallery-card">
-                <div class="img-container">
-                    <img src="اسم_صورتك_الأولى.png" alt="منتج 1">
-                </div>
-                <div class="card-info">
-                    <h3>اسم المنتج الأول</h3>
-                    <p>أضف وصفاً مختصراً لمنتجك هنا لتوضيح مميزاته.</p>
-                    <div class="card-footer">
-                        <span class="price">$السعر</span>
-                        <button class="btn" onclick="alert('تمت إضافة المنتج للسلة!')">اطلب الآن</button>
-                    </div>
+        <div class="grid">
+            <!-- منتج 1: تيشيرت -->
+            <div class="card">
+                <span class="badge">جديد</span>
+                <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" alt="تيشيرت أنيق">
+                <div class="card-content">
+                    <div class="card-category">ملابس رجالية / نسائية</div>
+                    <div class="card-title">تيشيرت سهرة عصري</div>
+                    <div class="card-price">$20.00</div>
                 </div>
             </div>
 
-            <!-- المنتج الثاني -->
-            <div class="gallery-card">
-                <div class="img-container">
-                    <img src="اسم_صورتك_الثانية.png" alt="منتج 2">
-                </div>
-                <div class="card-info">
-                    <h3>اسم المنتج الثاني</h3>
-                    <p>أضف وصفاً مختصراً لمنتجك هنا لتوضيح مميزاته.</p>
-                    <div class="card-footer">
-                        <span class="price">$السعر</span>
-                        <button class="btn" onclick="alert('تمت إضافة المنتج للسلة!')">اطلب الآن</button>
-                    </div>
+            <!-- منتج 2: حذاء -->
+            <div class="card">
+                <span class="badge">الأكثر مبيعاً</span>
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" alt="حذاء رياضي">
+                <div class="card-content">
+                    <div class="card-category">أحذية رياضية للجري</div>
+                    <div class="card-title">CHAUSSURE RUNFALCON SPORT</div>
+                    <div class="card-price">$50.00</div>
                 </div>
             </div>
 
+            <!-- منتج 3: حقيبة -->
+            <div class="card">
+                <span class="badge">عروض المدرسة</span>
+                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500" alt="حقيبة ظهر">
+                <div class="card-content">
+                    <div class="card-category">إكسسوارات وحقائب</div>
+                    <div class="card-title">حقيبة ظهر احترافية للعمل والدراسة</div>
+                    <div class="card-price">$79.00</div>
+                </div>
+            </div>
+
+            <!-- منتج 4: حذاء إضافي -->
+            <div class="card">
+                <span class="badge">تخفيضات</span>
+                <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500" alt="حذاء عصرية">
+                <div class="card-content">
+                    <div class="card-category">أحذية أطفال وشباب</div>
+                    <div class="card-title">CHAUSSURE GALAXY 8 EL C</div>
+                    <div class="card-price">$50.00</div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © 2026</p>
+    </footer>
 
 </body>
 </html>
